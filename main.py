@@ -27,9 +27,7 @@ def get_all_item(url):
         clean_data["buy_orders_item"].append(clean_json[item]["buyOrders"])
         clean_data["format_sellPrice_item"].append(clean_json[item]["formatSellPrice"])
         clean_data["format_BuyPrice_item"].append(clean_json[item]["formatBuyPrice"])
-    # print(clean_json[0]["name"])
-    # print(clean_data["sell_offers_item"])
-    print(clean_data)
+    # print(clean_data)
     return clean_data
 
 def get_item(name):
@@ -41,7 +39,8 @@ def get_item(name):
     data_list.append(clean_data["buy_orders_item"][get_index_item])
     data_list.append(clean_data["format_sellPrice_item"][get_index_item])
     data_list.append(clean_data["format_BuyPrice_item"][get_index_item])
-    
+    print(data_list)
+
 
 i = 1
 while i != 5: # Boucle Infini
