@@ -41,9 +41,8 @@ def get_item(name):
     data_list.append(clean_data["buy_orders_item"][get_index_item])
     data_list.append(clean_data["format_sellPrice_item"][get_index_item])
     data_list.append(clean_data["format_BuyPrice_item"][get_index_item])
-    print(data_list)
+    
 
-mycursor = connection.cursor()
 i = 1
 while i != 5: # Boucle Infini
     get_all_item("https://crossoutdb.com/data/search?l=undefined&_=1614526857308")
