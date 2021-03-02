@@ -1,6 +1,11 @@
 from bs4 import BeautifulSoup
 import requests
 import json
+from flask import Flask
+from flask_cors import CORS, cross_origin
+import numpy
+import time
+
 
 clean_data = {}
 clean_data["id_item"] = []
@@ -24,28 +29,42 @@ def get_all_item(url):
         clean_data["format_BuyPrice_item"].append(clean_json[item]["formatBuyPrice"])
     # print(clean_json[0]["name"])
     # print(clean_data["sell_offers_item"])
+    print(clean_data)
     return clean_data
-    
-def get_item(name, id_, name_, sellOffers, buyOrders, sellPrice, buyPrice):
-    get_index_item = clean_data["name_item"].index(name)
-    # print(name_item)
-    data_list = []
-    if id_ == True:
-        data_list.append(clean_data["id_item"][get_index_item])
-    elif name_ == True:
-        data_list.append(clean_data["name_item"][get_index_item])
-    elif sellOffers == True:
-        data_list.append(clean_data["sell_offers_item"][get_index_item])
-    elif buyOrders == True:
-        data_list.append(clean_data["buy_orders_item"][get_index_item])
-    elif sellPrice == True:
-        data_list.append(clean_data["format_sellPrice_item"][get_index_item])
-    elif buyPrice == True:
-        data_list.append(clean_data["format_BuyPrice_item"][get_index_item])
-    else:
-        print("ERR: Veuillez entrer des paramètres valide (True ou False)")
 
-get_item("RN Seal", True, False, True, True, False, True) # Mardi, tester cette fonction 
-get_all_item("https://crossoutdb.com/data/search?l=undefined&_=1614526857308")
-breakpoint()
+def get_item(name):
+    get_index_item = clean_data["name_item"].index(name)
+    data_list = []
+    data_list.append(clean_data["id_item"][get_index_item])
+    data_list.append(clean_data["name_item"][get_index_item])
+    data_list.append(clean_data["sell_offers_item"][get_index_item])
+    data_list.append(clean_data["buy_orders_item"][get_index_item])
+    data_list.append(clean_data["format_sellPrice_item"][get_index_item])
+    data_list.append(clean_data["format_BuyPrice_item"][get_index_item])
+    print(data_list)
+
+mycursor = connection.cursor()
+i = 1
+while i != 5: # Boucle Infini
+    get_all_item("https://crossoutdb.com/data/search?l=undefined&_=1614526857308")
+    time.sleep(60.0)
+
 # Pour mieux comprendre ne pas hésitez à regarder la magnifique vidéo de NinjaScripter au niveau réseaux: https://www.youtube.com/watch?v=pQL-Bflq_pw
+
+
+# app = Flask(__name__)
+# cors = CORS(app)
+# app.config['CORS_HEADERS'] = 'Content-Type'
+# 
+# @app.route('/get_otacos')
+# @cross_origin()
+# def main():
+#     return otacos_infos
+# 
+# @app.route('/get_otacos/boissons')
+# @cross_origin()
+# def main_boissons():
+#     return {"boissons" : otacos_infos["boissons"]}
+# 
+# if __name__ == "__main__":
+#     app.run(debug=True)
