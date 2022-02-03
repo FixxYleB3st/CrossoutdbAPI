@@ -42,13 +42,6 @@ def get_item(name):
     print(data_list)
 
 
-i = 1
-while i != 5: # Boucle Infini
-    get_all_item("https://crossoutdb.com/data/search?l=undefined&_=1614526857308")
-    time.sleep(60.0)
-
-# Pour mieux comprendre ne pas hésitez à regarder la magnifique vidéo de NinjaScripter au niveau réseaux: https://www.youtube.com/watch?v=pQL-Bflq_pw
-
 
 # app = Flask(__name__)
 # cors = CORS(app)
